@@ -1,0 +1,66 @@
+/* Bilingual Language Switcher Styles */
+.lang-bar {
+  background: var(--gray-100);
+  text-align: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.lang-bar a {
+  color: var(--primary);
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.2s;
+}
+.lang-bar a:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+.lang-bar a.active {
+  background: var(--primary);
+  color: var(--white);
+}
+.lang-bar span {
+  color: var(--gray-300);
+  margin: 0 2px;
+}
+
+/* Arabic section display */
+.lang-ar {
+  display: block;
+}
+.lang-ar.hidden {
+  display: none;
+}
+.lang-en.hidden {
+  display: none;
+}
+
+/* RTL overrides for Arabic content */
+[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+}
+[dir="rtl"] .faq-question {
+  text-align: right;
+}
+[dir="rtl"] .faq-question::after {
+  margin-left: 0;
+  margin-right: auto;
+}
+[dir="rtl"] .feature-card {
+  text-align: right;
+}
+[dir="rtl"] .contact-item {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .product-meta {
+  flex-direction: row-reverse;
+}
+[dir="rtl"] .hero-buttons {
+  flex-direction: row-reverse;
+}
