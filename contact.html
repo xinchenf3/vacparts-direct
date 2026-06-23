@@ -6,8 +6,14 @@
   <meta name="description" content="Contact VacParts Direct for product inquiries, pricing, and OEM customization. Based in Shenzhen, China. Serving UAE and global markets.">
   <title>Contact Us | VacParts Direct</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bilingual.css">
 </head>
 <body>
+
+<div class="lang-bar">
+  <a href="#" class="lang-en active">English</a> |
+  <a href="#" class="lang-ar-link">العربية</a>
+</div>
 
 <header class="header">
   <div class="header-inner">
@@ -26,83 +32,38 @@
   </div>
 </header>
 
-<section class="hero" style="padding: 48px 20px;">
+<!-- EN Hero -->
+<section class="hero lang-en" style="padding: 48px 20px;">
   <h1 style="font-size: 36px;">Contact <span>Us</span></h1>
   <p>Get in touch for product inquiries, pricing, and technical support</p>
 </section>
 
-<section class="section">
+<!-- AR Hero -->
+<section class="hero lang-ar" style="padding: 48px 20px;" dir="rtl" lang="ar">
+  <h1 style="font-size: 36px;"><span>اتصل بنا</span></h1>
+  <p>تواصل معنا للاستفسار عن المنتجات والأسعار والدعم الفني</p>
+</section>
+
+<!-- EN Contact -->
+<section class="section lang-en">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Get in Touch</h3>
-        <p style="color: var(--gray-600); margin-bottom: 24px;">
-          We respond within 24 hours on business days. For urgent inquiries, give us a call.
-        </p>
-
-        <div class="contact-item">
-          <div class="contact-icon">&#9993;</div>
-          <div>
-            <strong>Email</strong>
-            <span>info@vacparts-direct.com</span>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">&#9742;</div>
-          <div>
-            <strong>Phone</strong>
-            <span>+86 156 2515 5368</span>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">&#127968;</div>
-          <div>
-            <strong>Company Address</strong>
-            <span>Shenzhen Xinyucheng Trading Co., Ltd.<br>Shenzhen, Guangdong, China</span>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <div class="contact-icon">&#128338;</div>
-          <div>
-            <strong>Business Hours</strong>
-            <span>Monday - Friday: 9:00 AM - 6:00 PM (GMT+8)<br>Saturday: 9:00 AM - 12:00 PM</span>
-          </div>
-        </div>
+        <p style="color: var(--gray-600); margin-bottom: 24px;">We respond within 24 hours on business days. For urgent inquiries, give us a call.</p>
+        <div class="contact-item"><div class="contact-icon">&#9993;</div><div><strong>Email</strong><span>info@vacparts-direct.com</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#9742;</div><div><strong>Phone</strong><span>+86 156 2515 5368</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#127968;</div><div><strong>Company Address</strong><span>Shenzhen Xinyucheng Trading Co., Ltd.<br>Shenzhen, Guangdong, China</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#128338;</div><div><strong>Business Hours</strong><span>Monday - Friday: 9:00 AM - 6:00 PM (GMT+8)<br>Saturday: 9:00 AM - 12:00 PM</span></div></div>
       </div>
-
       <div class="contact-form">
         <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">Send a Message</h3>
         <form id="contactForm">
-          <div class="form-group">
-            <label for="name">Your Name *</label>
-            <input type="text" id="name" name="name" required placeholder="John Smith">
-          </div>
-          <div class="form-group">
-            <label for="company">Company Name</label>
-            <input type="text" id="company" name="company" placeholder="Your Company Ltd.">
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" required placeholder="john@company.com">
-          </div>
-          <div class="form-group">
-            <label for="inquiry">Inquiry Type</label>
-            <select id="inquiry" name="inquiry">
-              <option value="">Select...</option>
-              <option value="product">Product Information</option>
-              <option value="pricing">Pricing & Quote</option>
-              <option value="oem">OEM Customization</option>
-              <option value="technical">Technical Support</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message *</label>
-            <textarea id="message" name="message" required placeholder="Please describe your requirements..."></textarea>
-          </div>
+          <div class="form-group"><label for="name">Your Name *</label><input type="text" id="name" name="name" required placeholder="John Smith"></div>
+          <div class="form-group"><label for="company">Company Name</label><input type="text" id="company" name="company" placeholder="Your Company Ltd."></div>
+          <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required placeholder="john@company.com"></div>
+          <div class="form-group"><label for="inquiry">Inquiry Type</label><select id="inquiry" name="inquiry"><option value="">Select...</option><option value="product">Product Information</option><option value="pricing">Pricing & Quote</option><option value="oem">OEM Customization</option><option value="technical">Technical Support</option><option value="other">Other</option></select></div>
+          <div class="form-group"><label for="message">Your Message *</label><textarea id="message" name="message" required placeholder="Please describe your requirements..."></textarea></div>
           <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
         </form>
       </div>
@@ -110,41 +71,55 @@
   </div>
 </section>
 
-<section class="cta">
+<!-- AR Contact -->
+<section class="section lang-ar" dir="rtl" lang="ar">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>تواصل معنا</h3>
+        <p style="color: var(--gray-600); margin-bottom: 24px;">نرد خلال 24 ساعة في أيام العمل. للاستفسارات العاجلة، اتصل بنا.</p>
+        <div class="contact-item"><div class="contact-icon">&#9993;</div><div><strong>البريد الإلكتروني</strong><span>info@vacparts-direct.com</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#9742;</div><div><strong>الهاتف</strong><span>+86 156 2515 5368</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#127968;</div><div><strong>عنوان الشركة</strong><span>شركة شنتشن شينيويتشنغ التجارية المحدودة<br>شنتشن، قوانغدونغ، الصين</span></div></div>
+        <div class="contact-item"><div class="contact-icon">&#128338;</div><div><strong>ساعات العمل</strong><span>الاثنين - الجمعة: 9:00 ص - 6:00 م (GMT+8)<br>السبت: 9:00 ص - 12:00 م</span></div></div>
+      </div>
+      <div class="contact-form">
+        <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">أرسل رسالة</h3>
+        <form id="contactFormAR">
+          <div class="form-group"><label for="arname">الاسم *</label><input type="text" id="arname" name="name" required placeholder="محمد أحمد"></div>
+          <div class="form-group"><label for="arcompany">اسم الشركة</label><input type="text" id="arcompany" name="company" placeholder="شركتك المحدودة"></div>
+          <div class="form-group"><label for="aremail">البريد الإلكتروني *</label><input type="email" id="aremail" name="email" required placeholder="mohamed@company.com"></div>
+          <div class="form-group"><label for="arinquiry">نوع الاستفسار</label><select id="arinquiry" name="inquiry"><option value="">اختر...</option><option value="product">معلومات المنتج</option><option value="pricing">الأسعار وعروض السعر</option><option value="oem">تصنيع حسب الطلب</option><option value="technical">دعم فني</option><option value="other">أخرى</option></select></div>
+          <div class="form-group"><label for="armessage">رسالتك *</label><textarea id="armessage" name="message" required placeholder="يرجى وصف متطلباتك..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EN CTA -->
+<section class="cta lang-en">
   <h2>Ready to Get Started?</h2>
   <p>Contact us today for product inquiries, pricing, and OEM customization requests.</p>
   <a href="contact.html" class="btn">Contact Us</a>
 </section>
 
+<!-- AR CTA -->
+<section class="cta lang-ar" dir="rtl" lang="ar">
+  <h2>هل أنت مستعد للبدء؟</h2>
+  <p>اتصل بنا اليوم للاستفسار عن المنتجات والأسعار وطلبات التصنيع حسب الطلب.</p>
+  <a href="contact.html" class="btn">اتصل بنا</a>
+</section>
+
 <footer class="footer">
   <div class="footer-grid">
-    <div class="footer-col">
-      <h4>VacParts Direct</h4>
-      <a href="about.html">About Us</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Products</h4>
-      <a href="products.html">Pressure Switches</a>
-      <a href="products.html">Vacuum Regulators</a>
-      <a href="products.html">Filters</a>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Technical Support</a>
-      <a href="contact.html">Request Quote</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:info@vacparts-direct.com">info@vacparts-direct.com</a>
-      <a href="tel:+8615625155368">+86 156 2515 5368</a>
-    </div>
+    <div class="footer-col"><h4>VacParts Direct</h4><a href="about.html">About Us</a><a href="products.html">Products</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Products</h4><a href="products.html">Pressure Switches</a><a href="products.html">Vacuum Regulators</a><a href="products.html">Filters</a></div>
+    <div class="footer-col"><h4>Support</h4><a href="faq.html">FAQ</a><a href="contact.html">Technical Support</a><a href="contact.html">Request Quote</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:info@vacparts-direct.com">info@vacparts-direct.com</a><a href="tel:+8615625155368">+86 156 2515 5368</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Shenzhen Xinyucheng Trading Co., Ltd. | VacParts Direct. All rights reserved.</p>
-  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Shenzhen Xinyucheng Trading Co., Ltd. | VacParts Direct. All rights reserved.</p></div>
 </footer>
 
 <script src="js/main.js"></script>
