@@ -139,7 +139,7 @@ body {
 .product-body { padding: 24px; }
 .product-body h3 { font-size: 18px; color: var(--primary); margin-bottom: 8px; }
 .product-body p { color: var(--gray-600); font-size: 14px; margin-bottom: 16px; }
-.product-meta { display: flex; justify-content: space-between; align-items: center; }
+.product-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .product-price { font-size: 20px; font-weight: 700; color: var(--accent); }
 .product-badge { background: var(--primary); color: var(--white); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
 
