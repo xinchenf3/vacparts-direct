@@ -58,7 +58,10 @@
       </div>
       <div class="contact-form">
         <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">Send a Message</h3>
-        <form id="contactForm">
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="New Inquiry from vacparts-direct.com">
+          <input type="hidden" name="redirect" value="https://vacparts-direct.com/thanks.html">
           <div class="form-group"><label for="name">Your Name *</label><input type="text" id="name" name="name" required placeholder="John Smith"></div>
           <div class="form-group"><label for="company">Company Name</label><input type="text" id="company" name="company" placeholder="Your Company Ltd."></div>
           <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" required placeholder="john@company.com"></div>
@@ -85,7 +88,10 @@
       </div>
       <div class="contact-form">
         <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 20px;">أرسل رسالة</h3>
-        <form id="contactFormAR">
+        <form id="contactFormAR" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+          <input type="hidden" name="subject" value="استفسار جديد من vacparts-direct.com">
+          <input type="hidden" name="redirect" value="https://vacparts-direct.com/thanks.html">
           <div class="form-group"><label for="arname">الاسم *</label><input type="text" id="arname" name="name" required placeholder="محمد أحمد"></div>
           <div class="form-group"><label for="arcompany">اسم الشركة</label><input type="text" id="arcompany" name="company" placeholder="شركتك المحدودة"></div>
           <div class="form-group"><label for="aremail">البريد الإلكتروني *</label><input type="email" id="aremail" name="email" required placeholder="mohamed@company.com"></div>

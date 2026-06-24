@@ -94,22 +94,28 @@ document.addEventListener('DOMContentLoaded', function () {
   var form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
       var originalText = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
-
+      // Web3Forms handles the actual submission
       setTimeout(function () {
-        btn.textContent = 'Message Sent!';
-        btn.style.background = '#22c55e';
-        form.reset();
-        setTimeout(function () {
-          btn.textContent = originalText;
-          btn.disabled = false;
-          btn.style.background = '';
-        }, 3000);
-      }, 1000);
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 5000);
+    });
+  }
+  var formAR = document.getElementById('contactFormAR');
+  if (formAR) {
+    formAR.addEventListener('submit', function (e) {
+      var btn = formAR.querySelector('button[type="submit"]');
+      var originalText = btn.textContent;
+      btn.textContent = 'جارٍ الإرسال...';
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }, 5000);
     });
   }
 
