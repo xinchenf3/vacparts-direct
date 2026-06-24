@@ -124,4 +124,30 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
+
+  // ===== LANGUAGE SWITCHER =====
+  var langBar = document.querySelector('.lang-bar');
+  if (langBar) {
+    langBar.addEventListener('click', function(e) {
+      var link = e.target.closest('a[data-lang]');
+      if (!link) return;
+      e.preventDefault();
+
+      var lang = link.getAttribute('data-lang');
+
+      // Update active state
+      langBar.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
+      link.classList.add('active');
+
+      if (lang === 'en') {
+        // Show English, hide Arabic
+        document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.remove('hidden'); });
+        document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.remove('visible'); });
+      } else if (lang === 'ar') {
+        // Show Arabic, hide English
+        document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.add('visible'); });
+        document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.add('hidden'); });
+      }
+    });
+  }
 });

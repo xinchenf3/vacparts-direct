@@ -29,12 +29,17 @@
   margin: 0 2px;
 }
 
-/* Arabic section display */
+/* Language section display */
+/* Default: English visible, Arabic hidden */
 .lang-ar {
+  display: none;
+}
+.lang-en {
   display: block;
 }
-.lang-ar.hidden {
-  display: none;
+/* When toggled via JS */
+.lang-ar.visible {
+  display: block;
 }
 .lang-en.hidden {
   display: none;

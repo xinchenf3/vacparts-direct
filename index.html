@@ -328,33 +328,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script>
-// Language switcher
-document.addEventListener('DOMContentLoaded', function() {
-  var langBar = document.querySelector('.lang-bar');
-  if (!langBar) return;
-  
-  langBar.addEventListener('click', function(e) {
-    var link = e.target.closest('a[data-lang]');
-    if (!link) return;
-    e.preventDefault();
-    
-    var lang = link.getAttribute('data-lang');
-    
-    // Toggle active state
-    langBar.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
-    link.classList.add('active');
-    
-    // Show/hide sections
-    if (lang === 'en') {
-      document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.remove('hidden'); });
-      document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.add('hidden'); });
-    } else if (lang === 'ar') {
-      document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.remove('hidden'); });
-      document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.add('hidden'); });
-    }
-  });
-});
-</script>
+
 </body>
 </html>
