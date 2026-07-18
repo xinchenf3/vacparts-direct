@@ -1,159 +1,281 @@
-// VacParts Direct - Main JavaScript
-
-document.addEventListener('DOMContentLoaded', function () {
-
-  // ===== MOBILE MENU =====
-  const toggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
-  const body = document.body;
-
-  if (toggle && nav) {
-    toggle.addEventListener('click', function () {
-      const isOpen = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen);
-      toggle.innerHTML = isOpen ? '&#10005;' : '&#9776;';
-      if (isOpen) {
-        body.style.overflow = 'hidden';
-      } else {
-        body.style.overflow = '';
-      }
-    });
-
-    // Close menu when clicking a nav link
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        nav.classList.remove('open');
-        toggle.innerHTML = '&#9776;';
-        toggle.setAttribute('aria-expanded', 'false');
-        body.style.overflow = '';
-      });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function (e) {
-      if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
-        nav.classList.remove('open');
-        toggle.innerHTML = '&#9776;';
-        toggle.setAttribute('aria-expanded', 'false');
-        body.style.overflow = '';
-      }
-    });
+// ===== PRODUCT DATA =====
+const products = [
+  {
+    model: 'LF08', name: 'Compact Multi-Purpose Pressure Switch',
+    pressure: '0.2~45 bar', media: 'Air/Water/Oil/Refrigerant (-30~+120°C)',
+    electrical: 'SPST/SPDT 3A 120/240VAC', cert: 'UL, CE',
+    ddp: '$8.64', moq: '83 pcs (~10 kg)', img: 'images/LF08.jpg',
+    category: 'pressure'
+  },
+  {
+    model: 'LF20', name: 'Multi-Purpose Pressure Switch (No Hysteresis)',
+    pressure: '0.5~150 psi (8 ranges)', media: 'Air/Water/Oil/Refrigerant (-40~+120°C)',
+    electrical: 'SPST/SPDT 0.5A 250VAC', cert: 'UL, CE',
+    ddp: '$14.18', moq: '67 pcs (~10 kg)', img: 'images/LF20.jpg',
+    category: 'pressure'
+  },
+  {
+    model: 'LF20-V', name: 'Vacuum Pressure Switch (No Hysteresis)',
+    pressure: '1.1~22 in/Hg', media: 'Air only (-40~+120°C)',
+    electrical: 'SPST/SPDT 0.5A 250VAC', cert: 'UL, CE',
+    ddp: '$14.18', moq: '67 pcs (~10 kg)', img: 'images/LF20V.jpg',
+    category: 'vacuum'
+  },
+  {
+    model: 'LF25', name: 'Steam Pressure Switch',
+    pressure: '0.2~9 bar (6 ranges)', media: 'Gas/Liquid/Steam (+85/+150°C)',
+    electrical: 'SPST/SPDT 16(4)A 250VAC', cert: 'UL, CE',
+    ddp: '$14.43', moq: '56 pcs (~10 kg)', img: 'images/LF25.jpg',
+    category: 'special'
+  },
+  {
+    model: 'LF32', name: 'Air Differential Pressure Switch',
+    pressure: '20~5000 Pa (15 ranges)', media: 'Air/non-flammable gas (-20~+85°C)',
+    electrical: 'SPDT 1.5A 250V', cert: 'UL, CE',
+    ddp: '$24.94', moq: '50 pcs (~10 kg)', img: 'images/LF32.jpg',
+    category: 'differential'
+  },
+  {
+    model: 'LF40', name: 'Pneumatic Remote Pressure Switch',
+    pressure: '0.25~15 psi', media: 'Non-corr. gas/liquid (-10~+85°C)',
+    electrical: 'SPST/SPDT 0.1~21A 250VAC', cert: 'UL, CE',
+    ddp: '$23.09', moq: '63 pcs (~10 kg)', img: 'images/LF40.jpg',
+    category: 'special'
+  },
+  {
+    model: 'LF52A', name: 'Compact Differential Pressure Switch',
+    pressure: '5~400 kPa (7 ranges)', media: 'Water/Air/Oil (-20~+93°C)',
+    electrical: 'SPDT 1 setpoint 3A 250VAC', cert: 'UL, CE',
+    ddp: '$81.71', moq: '29 pcs (~10 kg)', img: 'images/LF52A.jpg',
+    category: 'differential'
+  },
+  {
+    model: 'LF55', name: 'Refrigeration Pressure Switch',
+    pressure: '-0.5~42 bar (13 ranges)', media: 'Refrigerant/Gas/Water/Oil (-30~+120°C)',
+    electrical: 'Micro-switch 250VAC', cert: 'UL, CE',
+    ddp: '$33.56', moq: '33 pcs (~10 kg)', img: 'images/LF55.jpg',
+    category: 'pressure'
+  },
+  {
+    model: 'LF17', name: 'Air Compressor Pressure Switch',
+    pressure: '1~35 kgf/cm² (2 models)', media: 'Air (-20~+85°C)',
+    electrical: 'NC 20~30A 250VAC', cert: 'UL, CE',
+    ddp: '$41.93', moq: '22 pcs (~10 kg)', img: 'images/LF17.jpg',
+    category: 'pressure'
+  },
+  {
+    model: 'LFS-01', name: 'Mini PCB-Mount Pressure Switch',
+    pressure: '±10~800 mbar', media: 'Non-corr. gas (-10~+90°C)',
+    electrical: 'SPST NO 20mA 125/250V', cert: 'UL, CE',
+    ddp: '$13.84', moq: '333 pcs (~10 kg)', img: 'images/LFS01.jpg',
+    category: 'vacuum'
   }
+];
 
-  // ===== FAQ ACCORDION =====
-  document.querySelectorAll('.faq-question').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var item = btn.parentElement;
-      var wasOpen = item.classList.contains('open');
+// ===== RENDER PRODUCTS =====
+const productGrid = document.getElementById('productGrid');
 
-      // Close all other FAQs
-      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
-        if (openItem !== item) openItem.classList.remove('open');
-      });
-
-      // Toggle current
-      if (wasOpen) {
-        item.classList.remove('open');
-      } else {
-        item.classList.add('open');
-      }
-    });
+function renderProducts(filter = 'all') {
+  productGrid.innerHTML = '';
+  products.forEach(p => {
+    if (filter !== 'all' && p.category !== filter) return;
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-img"><img src="${p.img}" alt="${p.model}" loading="lazy"></div>
+      <div class="product-body">
+        <div class="product-model">${p.model}</div>
+        <div class="product-name">${p.name}</div>
+        <ul class="product-specs">
+          <li><strong>Pressure</strong> ${p.pressure}</li>
+          <li><strong>Media</strong> ${p.media}</li>
+          <li><strong>Electrical</strong> ${p.electrical}</li>
+          <li><strong>Cert</strong> ${p.cert}</li>
+        </ul>
+        <div class="product-price-row">
+          <div class="product-ddp">${p.ddp}</div>
+          <div class="product-moq">MOQ: ${p.moq} | DDP (incl. duty & VAT)</div>
+        </div>
+        <button class="compare-check" data-model="${p.model}" style="margin-top:12px;width:100%;padding:8px;background:var(--bg-secondary);color:var(--text-secondary);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:0.85rem;transition:all 0.2s">+ Add to Compare</button>
+      </div>
+    `;
+    productGrid.appendChild(card);
   });
-
-  // ===== SMOOTH SCROLL =====
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+  // Re-bind compare buttons
+  document.querySelectorAll('.compare-check').forEach(btn => {
+    btn.addEventListener('click', () => toggleCompare(btn.dataset.model, btn));
   });
+  updateCheckedButtons();
+}
 
-  // ===== ACTIVE NAV HIGHLIGHT =====
-  var current = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav a').forEach(function (link) {
-    if (link.getAttribute('href') === current) {
-      link.classList.add('active');
+// ===== FILTER =====
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts(btn.dataset.filter);
+  });
+});
+
+// ===== FAQ ACCORDION =====
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+
+  // Active section highlight
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 100;
+    if (window.scrollY >= top) current = s.getAttribute('id');
+  });
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
+  });
+});
+
+// ===== MOBILE MENU =====
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+document.querySelectorAll('#navLinks a').forEach(a => {
+  a.addEventListener('click', () => navLinks.classList.remove('active'));
+});
+
+// ===== SMOOTH SCROLL OFFSET =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
     }
   });
+});
 
-  // ===== FLOATING WHATSAPP BUTTON =====
-  // Inject floating button into every page
-  var floatingHTML = '<div class="floating-contact">'
-    + '<span class="floating-contact-label">Chat on WhatsApp</span>'
-    + '<a href="https://wa.me/8615625155368" class="floating-contact-btn" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">'
-    + '<span class="pulse"></span>'
-    + '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>'
-    + '</a>'
-    + '</div>';
-  document.body.insertAdjacentHTML('beforeend', floatingHTML);
+// ===== CONTACT FORM =====
+document.getElementById('contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const inputs = e.target.querySelectorAll('input, textarea');
+  const name = inputs[0].value;
+  const email = inputs[1].value;
+  const company = inputs[2].value || 'N/A';
+  const message = inputs[3].value;
+  const subject = `VacParts Direct Inquiry from ${name} (${company})`;
+  const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`;
+  window.location.href = `mailto:xinchenf3@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
 
-  // ===== CONTACT FORM =====
-  var form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      var btn = form.querySelector('button[type="submit"]');
-      var originalText = btn.textContent;
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      // Web3Forms handles the actual submission
-      setTimeout(function () {
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }, 5000);
-    });
+// ===== INIT =====
+renderProducts();
+
+// ===== PRODUCT COMPARE =====
+let compareList = [];
+
+function toggleCompare(model, btn) {
+  if (compareList.includes(model)) {
+    compareList = compareList.filter(m => m !== model);
+  } else {
+    if (compareList.length >= 4) {
+      compareList.shift();
+    }
+    compareList.push(model);
   }
-  var formAR = document.getElementById('contactFormAR');
-  if (formAR) {
-    formAR.addEventListener('submit', function (e) {
-      var btn = formAR.querySelector('button[type="submit"]');
-      var originalText = btn.textContent;
-      btn.textContent = 'جارٍ الإرسال...';
-      btn.disabled = true;
-      setTimeout(function () {
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }, 5000);
-    });
+  updateCompareBar();
+  updateCheckedButtons();
+}
+
+function updateCheckedButtons() {
+  document.querySelectorAll('.compare-check').forEach(btn => {
+    if (compareList.includes(btn.dataset.model)) {
+      btn.textContent = '✓ Added';
+      btn.style.background = 'var(--accent)';
+      btn.style.color = '#000';
+      btn.style.borderColor = 'var(--accent)';
+    } else {
+      btn.textContent = '+ Add to Compare';
+      btn.style.background = 'var(--bg-secondary)';
+      btn.style.color = 'var(--text-secondary)';
+      btn.style.borderColor = 'var(--border)';
+    }
+  });
+}
+
+function updateCompareBar() {
+  const bar = document.getElementById('compareBar');
+  const count = document.getElementById('compareCount');
+  if (compareList.length > 0) {
+    bar.style.display = 'flex';
+    count.textContent = `${compareList.length} model(s) selected`;
+  } else {
+    bar.style.display = 'none';
   }
+}
 
-  // ===== HEADER SCROLL SHADOW =====
-  var header = document.querySelector('.header');
-  if (header) {
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 10) {
-        header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
-      } else {
-        header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
-      }
-    });
-  }
+document.getElementById('compareBtn').addEventListener('click', () => {
+  if (compareList.length < 2) return;
+  const selected = products.filter(p => compareList.includes(p.model));
+  const table = document.getElementById('compareTable');
+  table.style.display = 'block';
+  table.innerHTML = `
+    <h3 style="color:var(--text-primary);margin-bottom:16px">Product Comparison</h3>
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:0.85rem">
+      <thead>
+        <tr style="background:var(--bg-card)">
+          <th style="padding:10px;border:1px solid var(--border);color:var(--accent)">Model</th>
+          ${selected.map(p => `<th style="padding:10px;border:1px solid var(--border);color:var(--text-primary)">${p.model}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">Type</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.name}</td>`).join('')}
+        </tr>
+        <tr style="background:var(--bg-card)">
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">Pressure</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.pressure}</td>`).join('')}
+        </tr>
+        <tr>
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">Media</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.media}</td>`).join('')}
+        </tr>
+        <tr style="background:var(--bg-card)">
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">Electrical</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.electrical}</td>`).join('')}
+        </tr>
+        <tr>
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">Cert</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.cert}</td>`).join('')}
+        </tr>
+        <tr style="background:var(--bg-card)">
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">DDP Price</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--accent);font-weight:700">${p.ddp}</td>`).join('')}
+        </tr>
+        <tr>
+          <td style="padding:8px;border:1px solid var(--border);color:var(--text-muted);font-weight:600">MOQ</td>
+          ${selected.map(p => `<td style="padding:8px;border:1px solid var(--border);color:var(--text-secondary)">${p.moq}</td>`).join('')}
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  `;
+  table.scrollIntoView({ behavior: 'smooth' });
+});
 
-  // ===== LANGUAGE SWITCHER =====
-  var langBar = document.querySelector('.lang-bar');
-  if (langBar) {
-    langBar.addEventListener('click', function(e) {
-      var link = e.target.closest('a[data-lang]');
-      if (!link) return;
-      e.preventDefault();
-
-      var lang = link.getAttribute('data-lang');
-
-      // Update active state
-      langBar.querySelectorAll('a').forEach(function(a) { a.classList.remove('active'); });
-      link.classList.add('active');
-
-      if (lang === 'en') {
-        // Show English, hide Arabic
-        document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.remove('hidden'); });
-        document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.remove('visible'); });
-      } else if (lang === 'ar') {
-        // Show Arabic, hide English
-        document.querySelectorAll('.lang-ar').forEach(function(el) { el.classList.add('visible'); });
-        document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.add('hidden'); });
-      }
-    });
-  }
+document.getElementById('clearCompare').addEventListener('click', () => {
+  compareList = [];
+  updateCompareBar();
+  updateCheckedButtons();
+  document.getElementById('compareTable').style.display = 'none';
 });
